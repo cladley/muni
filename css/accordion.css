@@ -19,7 +19,10 @@
         ul#accordion li{
             line-height:17px;
             border-bottom:none;
-            border-bottom: 1px solid #000e2e;
+            border-bottom: 1px solid #2D6DBC;
+        }
+        ul#accordion li:last-child{
+            border-bottom: none;
         }
 
         ul#accordion ul li{

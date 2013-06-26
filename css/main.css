@@ -1,18 +1,24 @@
  html, body{
-          min-height: 100%;
+          height: 100%;
+          overflow: hidden;
       }
 
         #route-selector {
             background-color: white;
            
-            height: 200px;
+            height: 150px;
             overflow: auto;
           
           
         }
 
         #main_container{
-       
+          height:100%;
+         
+        }
+  
+        #myMap{
+        
         }
 
         #route-selector ul {
@@ -56,10 +62,7 @@
           
          }
 
-/*         .nano { background: #bba; width: 500px; height: 500px; }
-         .nano .content { padding: 10px; }
-         .nano .pane   { background: #888; }
-         .nano .slider { background: #111; }*/
+
 
 
          #locations-bar{
@@ -116,7 +119,7 @@
         
             position: relative;
             width:280px;
-            height:850px;
+           height:800px;
             margin-left:10px;
             background: #2d6dbc;
             padding-left: 10px;
@@ -151,6 +154,9 @@
         .section-title{
           color:lightBlue;
           font-size: 14px;
+          width:100px;
+          position:relative;
+          top:3px;
         }
 
 
