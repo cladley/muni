@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Muni Bus Viewer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/spinner.css" />
+    <link rel="stylesheet" href="css/accordion.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+    <script type="text/template" id="spinner_html">
+        <div class="windows8">
+            <div class="wBall" id="wBall_1">
+                <div class="wInnerBall">
+                </div>
+            </div>
+            <div class="wBall" id="wBall_2">
+                <div class="wInnerBall">
+                </div>
+            </div>
+            <div class="wBall" id="wBall_3">
+                <div class="wInnerBall">
+                </div>
+            </div>
+            <div class="wBall" id="wBall_4">
+                <div class="wInnerBall">
+                </div>
+            </div>
+           <div class="wBall" id="wBall_5">
+              <div class="wInnerBall">
+              </div>
+           </div>
+      </div>
+    </script>
+    <script type="text/template" id="big_spinner">
+      <div id="floatingCirclesG">
+          <div class="f_circleG" id="frotateG_01">
+          </div>
+          <div class="f_circleG" id="frotateG_02">
+          </div>
+          <div class="f_circleG" id="frotateG_03">
+          </div>
+          <div class="f_circleG" id="frotateG_04">
+          </div>
+          <div class="f_circleG" id="frotateG_05">
+          </div>
+          <div class="f_circleG" id="frotateG_06">
+          </div>
+          <div class="f_circleG" id="frotateG_07">
+          </div>
+          <div class="f_circleG" id="frotateG_08">
+          </div>
+      </div>
+    </script>
+    <script type="text/template" id="button_spinner">
+       <div id="floatingBarsG">
+          <div class="blockG" id="rotateG_01">
+          </div>
+          <div class="blockG" id="rotateG_02">
+          </div>
+          <div class="blockG" id="rotateG_03">
+          </div>
+          <div class="blockG" id="rotateG_04">
+          </div>
+          <div class="blockG" id="rotateG_05">
+          </div>
+          <div class="blockG" id="rotateG_06">
+          </div>
+          <div class="blockG" id="rotateG_07">
+          </div>
+          <div class="blockG" id="rotateG_08">
+          </div>
+        </div>
+
+    </script>
+
+
+    
+    <script type="text/template" id="stop_detail_template">
+        <span class="stpRoute">Route TG-stpRoute-TG</span>
+        <span class="stpDistance">TG-stpDistance-TG km</span><br/>
+        <span class="stpTitle">TG-stpTitle-TG</span><br/>
+        <span class="stpDirection">- TG-stpDirection-TG</span>
+    </script>
+
+
+    <script type="text/template" id="stop_popup_template">
+        <div class="stop-popup content">
+            <h1>TG-title-TG</h1>
+  
+            <div class="main-content">
+            <h5>Next Due in</h5>
+
+            <ul class="predictions TG-stopId-TG">
+                TG-loading-TG
+           
+            </ul>
+              
+            </div>
+            <footer>Updated every minute</footer>
+        </div>
+    </script>
+  
+            
+    <div id="main-container">
+            <div id="myMap"></div>
+            <div id="side-bar-container">
+                <header>
+                  <h4>Muni <span class="section-title">All Routes</span>
+                </header>            
+    
+             
+                <div id="route-selector" class="content">
+                    <ul id="route_list"></ul>
+                </div>
+
+                <div id="locations-retriever">
+                  <header style="postion:relative;">
+                     <button id="btncloseststops" class="btn-primary btn-mini ">show closest stops</button>
+                    <p class="section-title">Find Me</p>
+                  </header>
+                
+                    <input id="txtaddress" type="text" placeholder="Enter your address" />
+                  
+                         <button id="btnaddress" class="btn btn-success locate-buttons">
+                             
+                          <i class="icon-search icon-white"> </i> Go</button>
+                         <button id="btnGeolocation" class="btn btn-success locate-buttons"><i class="icon-map-marker icon-white"> </i> Locate Me</button>       
+                </div>
+                      
+
+                <div id="walking-route-controlll">
+                    <ul id="accordion"></ul>  
+                </div>
+
+            </div>
+
+    </div>
+
+      <div id="choice-overlay">
+          <div id="choice-box">
+                <h5>Please choose a location</h5>
+          </div>
+      </div>
+
+
+    <div id="initial-overlay">
+        <div class="inlay">
+            <h3>Muni Something</h3>
+     
+            <input id="txtAddress" type="text"  placeholder="Enter your address" />
+              <div class="btn-holder">
+                  <button id="btn_find_address" class="btn btn-success">
+                    
+                    <i class="icon-search icon-white"></i> Go</button>
+        
+                  <button id="btn_find_geo" class="btn btn-success"><i class="icon-map-marker icon-white"> </i> Locate Me</button>
+              </div>
+              <a href="#" id="btn_skip">Skip</a>
+        </div>
+    </div>
+
+
+   
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="js/helper.js"></script>
+    <script type="text/javascript" src="js/2dtree.js"></script>
+    <script type="text/javascript" src="js/route.js"></script>
+    <script type="text/javascript" src="js/locations.js"></script>
+    <script type="text/javascript" src="js/stop_prediction.js"></script>
+    <script type="text/javascript" src="js/core.js"></script>
+    <script type="text/javascript" src="js/sandbox.js"></script>
+    <script type="text/javascript" src="js/modules.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+   
+   
+   
+</body>
+</html>

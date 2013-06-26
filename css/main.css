@@ -1,0 +1,335 @@
+ html, body{
+          min-height: 100%;
+      }
+
+        #route-selector {
+            background-color: white;
+           
+            height: 200px;
+            overflow: auto;
+          
+          
+        }
+
+        #main_container{
+       
+        }
+
+        #route-selector ul {
+            list-style:none;
+            color:white;
+          
+            margin-left:0px;
+        }
+
+          #route-selector ul li {
+                    margin:2px;
+                    padding:6px;
+                    color:black;
+                    position:relative;
+                 
+                }
+                #route-selector ul li:last-child{
+                    border-bottom:none;
+
+                }
+
+                    #route-selector ul li:hover {
+                        background-color:#2BBBD8;
+                        color:white;
+                        cursor:pointer;
+                       
+                        
+                    }
+
+                    #route-selector ul li.selected{
+                        background-color:#ff6a00;
+                        color:white;
+
+                    }
+
+
+         div.spinner{
+             position:absolute;
+             right:6px;
+             top:6px;
+          
+         }
+
+/*         .nano { background: #bba; width: 500px; height: 500px; }
+         .nano .content { padding: 10px; }
+         .nano .pane   { background: #888; }
+         .nano .slider { background: #111; }*/
+
+
+         #locations-bar{
+            
+             position:absolute;
+             left:400px;
+             top:30px;
+         }
+
+
+         #choice-overlay{
+      
+             position:absolute;
+             z-index:9999;
+             top:0;
+             bottom:0;
+             left:0;
+             right:0;
+             background-color:rgba(0, 0, 0, 0.85);
+             display:none;
+         }
+
+         #choice-overlay.show{
+             display:block;
+         }
+
+         #choice-box{
+             
+            display:block;
+          
+            width:490px;
+             margin-top:300px;
+             margin-left:auto;
+             margin-right:auto;
+           
+          
+         }
+         #choice-box button{
+             display:block;
+             margin:5px;
+             width:100%;
+
+         }
+
+         
+
+         #btncloseststops{
+            position:absolute;
+            right:18px;
+         }
+
+
+        #side-bar-container{
+        
+            position: relative;
+            width:280px;
+            height:850px;
+            margin-left:10px;
+            background: #2d6dbc;
+            padding-left: 10px;
+            padding-right: 10px;
+            z-index: 4000;
+
+        }
+
+      
+
+        #side-bar-container header{
+          color : white;
+          font-size: 1.1em;
+          padding-left: 4px;
+          padding-top: 5px;
+        }
+
+        #side-bar-container header span{
+          padding-left: 20px;
+        }
+
+        #side-bar-container input[type="text"]{
+          width:260px;
+        }
+
+
+        #side-bar-container .locate-buttons{
+          width:135px;
+         
+        }
+
+        .section-title{
+          color:lightBlue;
+          font-size: 14px;
+        }
+
+
+    div.Infobox2 > div.infobox-body{
+      background: #2BBBD8 !important;
+    }
+
+   
+        /* Stop Popup */
+    div.stop-popup.content{
+    
+      background-color: #333333;
+      height:161px;
+      font-family: sans-serif;
+      color:white;
+    }
+
+    div.stop-popup.content h1{
+      font-size: 12px;
+      height:30px;
+      padding-left: 4px;
+      margin-bottom: 0px;
+      margin-top: -5px;
+      color:lightblue;
+      background-color:#2BBBD8;
+      overflow: hidden;
+      }
+
+   
+
+
+    div.stop-popup.content h5{
+      margin-top: 2px;
+      margin-bottom:4px;
+      padding-left: 8px;
+      padding-top: 8px;
+      color:white;
+
+      
+    }
+
+    div.stop-popup div.main-content{
+      height:70%;
+      background-color:#2BBBD8;
+      overflow: hidden;
+    
+    }
+
+    div.stop-popup.content ul.predictions{
+      list-style: none;
+      margin-top: 4px;
+      margin-left:0px;
+      font-size: 12px;
+      color:white;
+      font-weight: bold;
+   
+    }
+    div.stop-popup.content ul.predictions li{
+      background: #ADD8E6;
+      margin-left:2px;
+      margin-right:2px;
+      margin-bottom:1px;
+    }
+    
+    div.stop-popup.content ul.predictions li.warning{
+      background:#FF6A00;
+    }
+
+
+    div.stop-popup.content ul.predictions li span{
+      padding-left: 15px;
+    }
+
+    div.stop-popup.content ul.predictions li span.right{
+      
+    }
+
+    div.stop-popup.content ul.predictions p{
+
+      color:black;
+ 
+    }
+
+
+
+    div.stop-popup.content ul.predictions .windows8{
+      margin-left:50px;
+      margin-top:30px;
+    }
+
+    /*div.stop-popup.content small.footer{
+      padding-left: 18px;
+      font-size: 10px;
+
+    }*/
+    
+    div.stop-popup footer{
+      font-size: 10px;
+      padding-left: 4px;
+      height: 18px;
+      background:#004DCC;
+    }
+
+
+
+
+
+     #walking-route-controlll{
+       
+            margin-top: 10px;
+            margin-right: 5px;
+            
+        }
+
+
+        /* The first view that greets a user */
+        #initial-overlay{
+            background-color: #2BBBD8;
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 0;
+
+            z-index: 10000;
+            
+        }
+
+        .hide{
+            display: none;
+        }
+        
+        #initial-overlay .inlay{
+            height:160px;
+            width:400px;
+            margin: auto;
+         
+            margin-top: 300px;
+            opacity: 1;
+            border-radius: 5px;
+            color: white;
+           
+
+        }
+        #initial-overlay h3{
+          padding-left: 16px;
+          padding-top: 12px;
+          margin-bottom: 2px;
+        }
+
+
+        #initial-overlay .inlay #txtAddress{
+          display: block;
+          margin: auto;
+          width:360px;
+        }
+
+        #initial-overlay .inlay .btn-holder{
+   
+          width:370px;
+          margin: auto;
+          margin-top: 10px;
+        }
+
+        #initial-overlay .inlay button{
+          width:183px;
+        }
+        #initial-overlay #btn_skip{
+            float: right;
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+
+
+
+
+        span.tiny{
+          font-size: 10px;
+          float:right;
+          margin-right: 2px;
+          margin-top: 4px;
+        }
