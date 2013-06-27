@@ -583,7 +583,28 @@ CORE.create_module('walking-route-controlll', function (sb) {
     
             $(container).hide();
 
-         
+            var height = document.documentElement.clientHeight;
+            if(height >= 799){
+                $(accordion).css("height", "480px");
+            }else{
+                var newHeight = height / 2.1;
+                $(accordion).css("height", newHeight + "px");
+            }
+
+            window.addEventListener('resize', function(e){
+                var height = document.documentElement.clientHeight;
+                var width = document.documentElement.clientWidth;
+                    
+
+                if(height >= 799){
+                    $(accordion).css("height", "480px");
+                }else{
+                    var newHeight = height / 1.90;
+                    $(accordion).css("height", newHeight + "px");
+                }   
+
+                                
+            }, false);
             
             sb.addEvent(accordion, 'click', this.route_clicked.bind(this), 'a');
             
