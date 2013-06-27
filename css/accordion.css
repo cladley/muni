@@ -5,6 +5,9 @@
 
         ul#accordion{
             position: relative;
+            height:470px;
+            overflow: auto;
+
         }
         
      /*   ul#accordion ul.loading{
