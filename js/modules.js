@@ -514,7 +514,7 @@ CORE.create_module('closest_stops', function (sb) {
               if (unit=="K") { dist = dist * 1.609344 }
               if (unit=="N") { dist = dist * 0.8684 }
               return dist
-    },
+        },
 
         get_closest_stop: function () {
             if (current_location === undefined)
@@ -782,28 +782,46 @@ CORE.create_module('walking-route-controlll', function (sb) {
         onOpened : function(item,preds_list){
             var $ul = $(item).siblings('ul');
             var l = $ul.children().eq(0);
+            var docfrag = document.createDocumentFragment();
+
+            if(!preds_list){
+                //debugger;
+                console.log("We have none fucker");
+                var  li = document.createElement('li');
+                li.textContent = "No predictions at this time.";
+                docfrag.appendChild(li);
+                var new_height = 54;
+            }else{
+                 var li = document.createElement('li');
+                li.textContent = "Next Due in";
+
+                // Calculate the height so we know how far to animate the ul sliding down
+                // Put a magic number in here. MUST CHANGE
+                var new_height = 27 * (preds_list.length + 1);
+
+                docfrag.appendChild(li);
+                preds_list.forEach(function(p,i){
+                    var li = document.createElement('li');
+                    li.textContent =  p.mins + " minutes";
+                    docfrag.appendChild(li);
+                });
+
+                $(docfrag).hide();
+
+
+            }
+
 
             // Stop the loading loopAnimation
             $(l).stop(true,false);
 
-            // Calculate the height so we know how far to animate the ul sliding down
-            // Put a magic number in here. MUST CHANGE
-            var new_height = 27 * (preds_list.length + 1);
+            
            
             $(item).removeClass('closed').removeClass('loading').addClass("opened");
 
-            var li = document.createElement('li');
-            li.textContent = "Next Due in";
+           
 
-            var docfrag = document.createDocumentFragment();
-            docfrag.appendChild(li);
-            preds_list.forEach(function(p,i){
-                var li = document.createElement('li');
-                li.textContent =  p.mins + " minutes";
-                docfrag.appendChild(li);
-            });
-
-            $(docfrag).hide();
+          
 
              $ul.animate({
                 height : new_height + "px"
