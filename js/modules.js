@@ -460,9 +460,13 @@ CORE.create_module('closest_stops', function (sb) {
                type : 'loading-walking-routes',
                data: {}
             })
+            console.log("Current Location = ", current_location);
+            console.log(stops);
 
-       
-            MUNI.get_walk_routes(current_location, stops.slice(0, 5))
+            // longitude is x
+            // latitude is y
+            var stps = this.get_closest_stops_to_walk(stops,current_location);
+            MUNI.get_walk_routes(current_location, stps)
                .done(function (data) {
                    sb.notify({
                        type: 'new-walking-routes',
@@ -478,6 +482,40 @@ CORE.create_module('closest_stops', function (sb) {
             catchrectangle.draw(map_layer);
             this.show_layer();
         },
+        get_closest_stops_to_walk: function(stops,current_location,num){
+            num = num || 10;
+            var self = this;
+
+            stops.sort(function(s1,s2){
+               
+                var d1 = self.distanceTo(current_location.lat,current_location.lon,s1.lat,s1.lon,'K');
+                 var d2 = self.distanceTo(current_location.lat,current_location.lon,s2.lat,s2.lon,'K');
+                //console.log(d1);
+                if(d1 < d2)
+                    return -1;
+                else if(d1 > d2)
+                    return 1;
+                else return 0;
+            });
+  
+            return stops.slice(0,num);
+        },
+        distanceTo:function (lat1, lon1, lat2, lon2, unit) {
+              var rlat1 = Math.PI * lat1/180
+              var rlat2 = Math.PI * lat2/180
+              var rlon1 = Math.PI * lon1/180
+              var rlon2 = Math.PI * lon2/180
+              var theta = lon1-lon2
+              var rtheta = Math.PI * theta/180
+              var dist = Math.sin(rlat1) * Math.sin(rlat2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.cos(rtheta);
+              dist = Math.acos(dist)
+              dist = dist * 180/Math.PI
+              dist = dist * 60 * 1.1515
+              if (unit=="K") { dist = dist * 1.609344 }
+              if (unit=="N") { dist = dist * 0.8684 }
+              return dist
+    },
+
         get_closest_stop: function () {
             if (current_location === undefined)
                 throw new Error("Need a location set to find a closest stop");
@@ -681,11 +719,9 @@ CORE.create_module('walking-route-controlll', function (sb) {
                     this.onLoading(item);
                     break;
                 case 'opened':
-                    console.log("In opened");
                     this.onOpened(item,preds_list);
                     break;
                 case 'updating':
-                    console.log("In updating");
                     this.onUpdate(item,preds_list);
                     break;
                 case 'closed':
@@ -724,6 +760,10 @@ CORE.create_module('walking-route-controlll', function (sb) {
         },
         onUpdate : function(item,preds_list){
             var $ul = $(item).siblings('ul');
+
+
+
+
             var lis = $ul.children().slice(1, 5);
            
             var docfrag = document.createDocumentFragment();
