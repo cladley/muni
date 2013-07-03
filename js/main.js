@@ -22,5 +22,5 @@ function themesModuleLoaded() {
     CORE.add_global({ key: 'spinner_html', value: spinnerhtml });
     CORE.add_global({ key: 'api_key', value: "Ajr-eB1TUBaAE6jBFPwwGTykOteRcsFkzfwyI7OdWEWPxKTyTQrAoitRmo39vgUU" });
     CORE.start_all();
-    CORE.debug(true);
+    CORE.debug(false);
 }

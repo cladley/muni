@@ -1,4 +1,4 @@
-﻿
+
 
 CORE.create_module('initial-overlay', function(sb){
     var overlay;
@@ -449,25 +449,7 @@ CORE.create_module('closest_stops', function (sb) {
 
                 map_layer.push(info);
                 stop.info = info;
-                // map.entities.push(new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(51.50, -0.127), {title: 'London', description: 'description here', pushpin: pin2})); 
-
-             // console.log(stop);
-             // debugger;
-             //      var stop = new MUNI.StopPopup(stop,stop.routeTag);
-             //      map_layer.push(stop);
-            }
-
-            //     Microsoft.Maps.Events.addHandler(pin, 'click', displayEventInfo);
-            //     self.routeDetailLayer.push(pin);
-            // }
-
-            // // Todo, need some way to remove the event handlers for every stop on a route
-
-            // function displayEventInfo(e) {
-            //     var stop = e.target.stopInfo;
-            //     $(self).trigger("stop_clicked", { stop: stop });
-            // }
-
+               
 
 
             sb.notify({
@@ -916,6 +898,13 @@ CORE.create_module('locations-retriever', function (sb) {
 
             sb.addEvent(btnAddress, 'click', this.get_location.bind(this));
             sb.addEvent(btnGeolocation, 'click', this.get_location_geo.bind(this));
+            sb.addEvent(txtAddress, 'focus', function(e){
+                this.select();
+            })
+            sb.addEvent(txtAddress, 'mouseup', function(e){
+                e.preventDefault();
+            });
+
         },
 
         destroy: function () {
@@ -968,6 +957,7 @@ CORE.create_module('locations-retriever', function (sb) {
                 // Using a try catch because I try to remove the spinner_element
                 // from both buttons, and since one of the buttons won't contain
                 // it, then it will throw and error
+
                 try{
                      btnAddress.removeChild(spinner_element);
                 }catch(e){
