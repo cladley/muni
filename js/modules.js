@@ -402,6 +402,7 @@ CORE.create_module('closest_stops', function (sb) {
             var lat = location_data.point.coordinates[0];
             var lon = location_data.point.coordinates[1];
             current_location = new KDPoint(lat, lon);
+            this.get_stops_in_range();
         },
 
         create_catchment_rectangle: function (x, y, amount) {
@@ -444,12 +445,15 @@ CORE.create_module('closest_stops', function (sb) {
        
                 var info = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(stop.lat,stop.lon), { 
                     showCloseButton : false,
-                    title : "<b>" + stop.routeTag  + "</b> <span class='tiny'>" + stop.direction_title + "</span>" });
+                    title : "<b>" + stop.routeTag  + "</b> <span class='tiny'>" + stop.direction_title.substring(0,38) + "</span>" });
                
 
                 map_layer.push(info);
                 stop.info = info;
-               
+           
+            }
+
+          
 
 
             sb.notify({
